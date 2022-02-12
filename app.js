@@ -77,12 +77,25 @@ module.exports = {
                     }
                 }
             });
-            return { success: true }
+            return { success: true, pageID: response.id }
         }
         catch (err) {
             return { success: false }
         }
 
+    },
+    deleteTodo: async function deleteTodo(pageID) {
+        try {
+            const response = await notion.blocks.delete({
+                block_id: pageID
+            })
+            console.log(response);
+            return { success: true }
+        }
+        catch (err) {
+            console.log(err);
+            return { success: false }
+        }
     },
     dev: async function dev(databaseID) {
         try {
@@ -95,6 +108,5 @@ module.exports = {
         catch (err) {
             return { success: false }
         }
-
     }
 };

@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { readTodo, createTodo, dev, status } = require("./app");
+const { readTodo, createTodo, deleteTodo, dev, status } = require("./app");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,6 +23,11 @@ app.post('/createTodo', async (req, res) => {
 
 app.get('/dev', async (req, res) => {
     const result = await dev(req.query.databaseID);
+    res.send(result);
+})
+
+app.delete('/deleteTodo', async (req, res) => {
+    const result = await deleteTodo(req.body.pageID);
     res.send(result);
 })
 
