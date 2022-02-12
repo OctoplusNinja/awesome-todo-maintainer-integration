@@ -97,6 +97,52 @@ module.exports = {
             return { success: false }
         }
     },
+    updateTodo: async function updateTodo(data) {
+        try {
+            const response = await notion.pages.update({
+                page_id: data.pageID,
+                properties: {
+                    Todo: {
+                        type: "title",
+                        title: [
+                            {
+                                text: {
+                                    content: data.title
+                                }
+                            }
+                        ]
+                    },
+                    Priority:
+                    {
+                        select: {
+                            name: data.priority
+                        }
+                    },
+                    Status:
+                    {
+                        select: {
+                            name: data.status
+                        }
+                    },
+                    Remarks:
+                    {
+                        rich_text: [
+                            {
+                                text: {
+                                    content: data.remarks
+                                }
+                            }
+                        ]
+                    }
+                }
+            })
+
+            return { success: true, pageID: response.id }
+        }
+        catch (err) {
+            return { success: false }
+        }
+    },
     dev: async function dev(databaseID) {
         try {
             const response = await notion.databases.query({
