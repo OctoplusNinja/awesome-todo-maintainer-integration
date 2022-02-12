@@ -4,6 +4,15 @@ require("dotenv").config();
 const notion = new Client({ auth: process.env.NOTION_KEY });
 
 module.exports = {
+    status: async function status(databaseID) {
+        try {
+            const response = await notion.databases.retrieve({ database_id: databaseID });
+            return { success: true }
+        }
+        catch (err) {
+            return { success: false }
+        }
+    },
     readTodo: async function readTodo(databaseID) {
         try {
             const response = await notion.databases.query({

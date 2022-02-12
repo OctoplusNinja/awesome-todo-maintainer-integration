@@ -1,13 +1,14 @@
 require("dotenv").config();
-const { readTodo, createTodo, dev } = require("./app");
+const { readTodo, createTodo, dev, status } = require("./app");
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.send("Bruhhhh");
+app.get("/", async (req, res) => {
+    const result = await status(req.query.databaseID);
+    res.send(result);
 });
 
 app.get("/readTodo", async (req, res) => {
