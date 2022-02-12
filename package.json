@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@notionhq/client": "^0.4.13",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2"
+  },
+  "name": "notion",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
