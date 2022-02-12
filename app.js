@@ -19,11 +19,11 @@ module.exports = {
                     remarks: res.properties?.Remarks?.rich_text[0]?.plain_text,
                 };
             });
-            return { success: "true", results };
+            return { success: true, results };
         }
         catch (err) {
             console.log("status Code: " + err.status);
-            return { success: "false" };
+            return { success: false };
         }
 
     },
@@ -68,10 +68,10 @@ module.exports = {
                     }
                 }
             });
-            return { success: "true" }
+            return { success: true }
         }
         catch (err) {
-            return { success: "false" }
+            return { success: false }
         }
 
     },
@@ -81,10 +81,10 @@ module.exports = {
                 database_id: databaseID,
             });
             // console.log(response)
-            return { success: "true", results: response.results };
+            return { success: true, results: response.results };
         }
         catch (err) {
-            return { success: "false" }
+            return { success: false }
         }
 
     }
