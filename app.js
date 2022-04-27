@@ -1,10 +1,10 @@
-const { Client } = require("@notionhq/client");
+// const { Client } = require("@notionhq/client");
 require("dotenv").config();
 
-const notion = new Client({ auth: process.env.NOTION_KEY });
+// const notion = new Client({ auth: process.env.NOTION_KEY });
 
 module.exports = {
-    status: async function status(databaseID) {
+    status: async function status(notion, databaseID) {
         try {
             const response = await notion.databases.retrieve({ database_id: databaseID });
             return { success: true }
@@ -13,7 +13,7 @@ module.exports = {
             return { success: false }
         }
     },
-    readTodo: async function readTodo(databaseID) {
+    readTodo: async function readTodo(notion, databaseID) {
         try {
             const response = await notion.databases.query({
                 database_id: databaseID,
@@ -36,7 +36,7 @@ module.exports = {
         }
 
     },
-    createTodo: async function createTodo(databaseID, data) {
+    createTodo: async function createTodo(notion, databaseID, data) {
         try {
             const response = await notion.pages.create({
                 parent: {
@@ -84,7 +84,7 @@ module.exports = {
         }
 
     },
-    deleteTodo: async function deleteTodo(pageID) {
+    deleteTodo: async function deleteTodo(notion, pageID) {
         try {
             const response = await notion.blocks.delete({
                 block_id: pageID
@@ -97,7 +97,7 @@ module.exports = {
             return { success: false }
         }
     },
-    updateTodo: async function updateTodo(data) {
+    updateTodo: async function updateTodo(notion, data) {
         try {
             const response = await notion.pages.update({
                 page_id: data.pageID,
@@ -143,7 +143,7 @@ module.exports = {
             return { success: false }
         }
     },
-    dev: async function dev(databaseID) {
+    dev: async function dev(notion, databaseID) {
         try {
             const response = await notion.databases.query({
                 database_id: databaseID,
