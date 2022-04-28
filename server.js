@@ -32,12 +32,12 @@ app.get('/readTodo', async (req, res) => {
 	res.send(result);
 });
 
-app.put('/updateTodo', async (req, res) => {
+app.post('/updateTodo', async (req, res) => {
 	const result = await updateTodo(res.locals.client, req.body);
 	res.send(result);
 });
 
-app.delete('/deleteTodo', async (req, res) => {
+app.post('/deleteTodo', async (req, res) => {
 	const result = await deleteTodo(res.locals.client, req.body.pageID);
 	res.send(result);
 });
